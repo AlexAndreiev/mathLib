@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FactorsTest {
 
     @Test
-    void commonFactors() {
+    void getCommonFactors() {
     }
 
     @Test
@@ -21,5 +21,26 @@ public class FactorsTest {
         assertEquals(Factors.isCommonDivider(new int[] {48, 8}, 8), true);
         assertEquals(Factors.isCommonDivider(new int[] {4, 8}, 1), true);
 
+    }
+
+    @Test
+    void getFactors() {
+    }
+
+    @Test
+    void getPrimeFactors() {
+        int[] arr;
+        arr = Factors.getPrimeFactors(8).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {2}, arr);
+        arr = Factors.getPrimeFactors(33).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {3, 11}, arr);
+        arr = Factors.getPrimeFactors(1987).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {1987}, arr);
+        arr = Factors.getPrimeFactors(247693).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {2}, arr);
+    }
+
+    @Test
+    void getMaxCommonDivider() {
     }
 }
