@@ -1,10 +1,10 @@
 package com.alex.andreiv;
 
-import junit.framework.TestCase;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class PrimeGeneratorTest extends TestCase {
+import static org.junit.jupiter.api.Assertions.*;
+
+public class PrimeGeneratorTest {
 
     static final int[] PRIMES_SEQUENCE = new int[]{2,3,5,7,11,13,17,19,23};
 
@@ -12,6 +12,6 @@ public class PrimeGeneratorTest extends TestCase {
     public void testGenNext() {
         var primeGen = new PrimeGenerator();
         for (var num : PRIMES_SEQUENCE)
-            Assert.assertEquals(num, primeGen.getNextPrime());
+            assertEquals(num, primeGen.getNextPrime());
     }
 }
