@@ -31,12 +31,17 @@ public class Factors {
         return factorsList;
     }
 
+    /*
+    * Simple optimized school algorithm
+    * */
     public static List<Integer> getPrimeFactors(int number){
-        //optimization
-        if (isPrime(number))
-            return number;
-
         var primeFactorsList = new ArrayList<Integer>();
+        //optimization
+        if (isPrime(number)) {
+            primeFactorsList.add(number);
+            return primeFactorsList;
+        }
+
         var primeGenerator = new PrimeGenerator();
         var prime = primeGenerator.getNextPrime();
 
@@ -44,14 +49,11 @@ public class Factors {
             if (isDividerFor(prime, number)) {
                 number /= prime;
                 primeFactorsList.add(prime);
-                primeGenerator.reset();
             }
             prime = primeGenerator.getNextPrime();
         }
-
-        return new ArrayList<>(new HashSet<>(primeFactorsList));
+        return primeFactorsList;
     }
-
 
     public static List<Integer> getCommonFactors(int[] numbers) {
         Objects.requireNonNull(numbers, "`numbers` parameter cannot be null");

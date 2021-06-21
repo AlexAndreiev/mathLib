@@ -37,7 +37,9 @@ public class FactorsTest {
         arr = Factors.getPrimeFactors(1987).stream().mapToInt(i->i).toArray();
         assertArrayEquals(new int[] {1987}, arr);
         arr = Factors.getPrimeFactors(247693).stream().mapToInt(i->i).toArray();
-        assertArrayEquals(new int[] {2}, arr);
+        assertArrayEquals(new int[] {247693}, arr);
+        arr = Factors.getPrimeFactors(247694).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {2, 271, 457}, arr);
     }
 
     @Test
