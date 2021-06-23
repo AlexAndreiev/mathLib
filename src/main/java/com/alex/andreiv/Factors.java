@@ -69,7 +69,7 @@ public class Factors {
         if (divider == 0) throw new IllegalArgumentException("`divider` parameter cannot be 0");
 
         for (var num : numbers) {
-            if (num % divider != 0)
+            if (!isDividerFor(divider, num))
                 return false;
         }
         return true;
