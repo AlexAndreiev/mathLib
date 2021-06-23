@@ -3,6 +3,9 @@ package com.alex.andreiv;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FactorsTest {
@@ -25,6 +28,27 @@ public class FactorsTest {
 
     @Test
     void getFactors() {
+        int[] arr;
+        arr = Factors.getFactors(0).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {}, arr);
+
+        arr = Factors.getFactors(1).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {1}, arr);
+
+        arr = Factors.getFactors(3).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {1, 3}, arr);
+
+        arr = Factors.getFactors(4).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {1, 2, 4}, arr);
+
+        arr = Factors.getFactors(13).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {1, 13}, arr);
+
+        arr = Factors.getFactors(16).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {1, 2, 4, 8, 16}, arr);
+
+        arr = Factors.getFactors(287).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {1, 7, 41, 287}, arr);
     }
 
     @Test

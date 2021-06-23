@@ -10,22 +10,18 @@ public class Factors {
 
     public static List<Integer> getFactors(int number){
         var factorsList = new ArrayList<Integer>();
+        if (number == 0) return factorsList;
+
         factorsList.add(1);
-        var primeGenerator = new PrimeGenerator();
-        var prime = primeGenerator.getNextPrime();
+        if (number == 1) return factorsList;
 
         var tmpNumber = number;
-        while (tmpNumber < prime) {
-            if (isDividerFor(prime, tmpNumber)) {
-                tmpNumber /= prime;
-                primeGenerator.reset();
-                factorsList.add(prime);
-                continue;
-            }
-            prime = primeGenerator.getNextPrime();
+        var divider = 2;
+        while (divider <= tmpNumber/2) {
+            if (isDividerFor(divider, tmpNumber))
+                factorsList.add(divider);
+            divider++;
         }
-
-
 
         factorsList.add(number);
         return factorsList;
