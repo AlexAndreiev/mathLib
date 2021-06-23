@@ -54,19 +54,37 @@ public class FactorsTest {
     @Test
     void getPrimeFactors() {
         int[] arr;
-        arr = Factors.getPrimeFactors(8).stream().mapToInt(i->i).toArray();
+        arr = Factors.getPrimeFactors(8, false).stream().mapToInt(i->i).toArray();
         assertArrayEquals(new int[] {2}, arr);
-        arr = Factors.getPrimeFactors(33).stream().mapToInt(i->i).toArray();
+        arr = Factors.getPrimeFactors(33, false).stream().mapToInt(i->i).toArray();
         assertArrayEquals(new int[] {3, 11}, arr);
-        arr = Factors.getPrimeFactors(1987).stream().mapToInt(i->i).toArray();
+        arr = Factors.getPrimeFactors(1987, false).stream().mapToInt(i->i).toArray();
         assertArrayEquals(new int[] {1987}, arr);
-        arr = Factors.getPrimeFactors(247693).stream().mapToInt(i->i).toArray();
+        arr = Factors.getPrimeFactors(247693, false).stream().mapToInt(i->i).toArray();
         assertArrayEquals(new int[] {247693}, arr);
-        arr = Factors.getPrimeFactors(247694).stream().mapToInt(i->i).toArray();
+        arr = Factors.getPrimeFactors(247694, false).stream().mapToInt(i->i).toArray();
         assertArrayEquals(new int[] {2, 271, 457}, arr);
+
+        // full list
+        arr = Factors.getPrimeFactors(18, true).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {2, 3, 3}, arr);
+        arr = Factors.getPrimeFactors(8, true).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {2, 2, 2}, arr);
+        arr = Factors.getPrimeFactors(33, true).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {3, 11}, arr);
+        arr = Factors.getPrimeFactors(45, true).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {3, 3, 5}, arr);
+        arr = Factors.getPrimeFactors(1987, true).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {1987}, arr);
+        arr = Factors.getPrimeFactors(247693, true).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {247693}, arr);
+        arr = Factors.getPrimeFactors(247694, true).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {2, 271, 457}, arr);
+
     }
 
     @Test
     void getMaxCommonDivider() {
     }
+
 }
