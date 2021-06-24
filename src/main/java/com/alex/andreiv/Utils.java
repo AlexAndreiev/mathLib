@@ -2,7 +2,12 @@ package com.alex.andreiv;
 
 public class Utils {
 
-    public static boolean isDividerFor(int divider, int number) { return number % divider == 0; }
+    public static boolean isDividerFor(int divider, int number) {
+        if (divider == 0)
+            throw new ArithmeticException("divider can't be 0");
+        if (number == 0) return false;
+        return number % divider == 0;
+    }
 
 /*
      All primes are of form 6k+i for some integer k and for i = -1,0,1,2,3,4.
