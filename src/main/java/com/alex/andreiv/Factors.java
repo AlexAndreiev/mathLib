@@ -12,13 +12,14 @@ public class Factors {
 
         factorsList.add(1);
         if (number == 1) return factorsList;
-
-        var tmpNumber = number;
-        var divider = 2;
-        while (divider <= tmpNumber/2) {
-            if (isDividerFor(divider, tmpNumber))
-                factorsList.add(divider);
-            divider++;
+        if (!isPrime(number)) {
+            var tmpNumber = number;
+            var divider = 2;
+            while (divider <= tmpNumber / 2) {
+                if (isDividerFor(divider, tmpNumber))
+                    factorsList.add(divider);
+                divider++;
+            }
         }
 
         factorsList.add(number);
@@ -54,14 +55,51 @@ public class Factors {
     public static List<Integer> getCommonFactors(int[] numbers) {
         Objects.requireNonNull(numbers, "`numbers` parameter cannot be null");
         if (numbers.length == 0) throw new IllegalArgumentException("argument has zero size");
-        var resultSet = new HashSet<>(getFactors(numbers[0]));
-        for (int i = 1; i < numbers.length; i++) {
-            var l = getFactors(numbers[i]);
-            resultSet.retainAll(l);
+        var factorsList = new ArrayList<Integer>();
+        var len = numbers.length;
+        var minNumber = numbers[0];
+        var hasPrimeNumber = false;
+        for (var num : numbers) {
+            if (num == 0) return factorsList;
+            if (isPrime(num)) {
+                hasPrimeNumber = false;
+                minNumber = num;
+                break;
+            }
+            if (minNumber > num) minNumber = num;
         }
 
-        return new ArrayList<>(resultSet);
+        factorsList.add(1);
+        if (minNumber == 1) return factorsList;
+
+        int i;
+        if (!hasPrimeNumber) {
+            var divider = 2;
+            while (divider <= minNumber / 2) {
+                i = 0;
+                while (i < len) {
+                    if (!isDividerFor(divider, numbers[i]))
+                        break;
+                    i++;
+                }
+                // is divider for all numbers
+                if (i == len)
+                    factorsList.add(divider);
+                divider++;
+            }
+        }
+
+        i = 0;
+        while (i < len) {
+            if (!isDividerFor(minNumber, numbers[i]))
+                return factorsList;
+            i++;
+        }
+
+        factorsList.add(minNumber);
+        return factorsList;
     }
+
 
     public static boolean isCommonDivider(int[] numbers, int divider) {
         Objects.requireNonNull(numbers, "`numbers` parameter cannot be null");

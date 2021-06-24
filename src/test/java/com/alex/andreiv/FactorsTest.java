@@ -23,6 +23,9 @@ public class FactorsTest {
 
         arr = Factors.getCommonFactors(new int[] {6, 36, 75}).stream().mapToInt(i->i).toArray();
         assertArrayEquals(new int[] {1, 3}, arr);
+
+        arr = Factors.getCommonFactors(new int[] {6, 36, 75, 156, 45, 205, 456872, 4972, 788, 4686}).stream().mapToInt(i->i).toArray();;
+        assertArrayEquals(new int[] {1}, arr);
     }
 
     @Test
