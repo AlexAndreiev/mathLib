@@ -1,10 +1,6 @@
 package com.alex.andreiv;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,10 +30,10 @@ public class FactorsTest {
         assertThrows(NullPointerException.class, () -> Factors.isCommonDivider(null, 2));
         assertThrows(IllegalArgumentException.class, () -> Factors.isCommonDivider(new int[] {4, 8}, 0));
 
-        assertEquals(Factors.isCommonDivider(new int[] {4, 8}, 2), true);
-        assertEquals(Factors.isCommonDivider(new int[] {38, 13}, 2), false);
-        assertEquals(Factors.isCommonDivider(new int[] {48, 8}, 8), true);
-        assertEquals(Factors.isCommonDivider(new int[] {4, 8}, 1), true);
+        assertTrue(Factors.isCommonDivider(new int[]{4, 8}, 2));
+        assertFalse(Factors.isCommonDivider(new int[]{38, 13}, 2));
+        assertTrue(Factors.isCommonDivider(new int[]{48, 8}, 8));
+        assertTrue(Factors.isCommonDivider(new int[]{4, 8}, 1));
 
     }
 
