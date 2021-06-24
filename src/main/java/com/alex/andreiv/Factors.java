@@ -1,9 +1,7 @@
 package com.alex.andreiv;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+
 import static com.alex.andreiv.Utils.*;
 
 public class Factors {
@@ -55,15 +53,14 @@ public class Factors {
 
     public static List<Integer> getCommonFactors(int[] numbers) {
         Objects.requireNonNull(numbers, "`numbers` parameter cannot be null");
-
-        var factorsList = new ArrayList<Integer>();
-        for (int num : numbers) {
-            while (num != 1)
-            {
-
-            }
+        if (numbers.length == 0) throw new IllegalArgumentException("argument has zero size");
+        var resultSet = new HashSet<Integer>(getFactors(numbers[0]));
+        for (int i = 1; i < numbers.length; i++) {
+            var l = getFactors(numbers[i]);
+            resultSet.retainAll(l);
         }
-        return factorsList;
+
+        return new ArrayList<>(resultSet);
     }
 
     public static boolean isCommonDivider(int[] numbers, int divider) {

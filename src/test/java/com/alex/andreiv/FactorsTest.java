@@ -12,6 +12,21 @@ public class FactorsTest {
 
     @Test
     void getCommonFactors() {
+        assertThrows(NullPointerException.class, () -> Factors.getCommonFactors(null));
+        assertThrows(IllegalArgumentException.class, () -> Factors.getCommonFactors(new int[] {}));
+
+        int[] arr;
+        arr = Factors.getCommonFactors(new int[] {2}).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {1, 2}, arr);
+
+        arr = Factors.getCommonFactors(new int[] {2, 3}).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {1}, arr);
+
+        arr = Factors.getCommonFactors(new int[] {6, 12, 24}).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {1, 2, 3, 6}, arr);
+
+        arr = Factors.getCommonFactors(new int[] {6, 36, 75}).stream().mapToInt(i->i).toArray();
+        assertArrayEquals(new int[] {1, 3}, arr);
     }
 
     @Test
