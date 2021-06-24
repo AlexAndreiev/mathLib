@@ -54,7 +54,7 @@ public class Factors {
     public static List<Integer> getCommonFactors(int[] numbers) {
         Objects.requireNonNull(numbers, "`numbers` parameter cannot be null");
         if (numbers.length == 0) throw new IllegalArgumentException("argument has zero size");
-        var resultSet = new HashSet<Integer>(getFactors(numbers[0]));
+        var resultSet = new HashSet<>(getFactors(numbers[0]));
         for (int i = 1; i < numbers.length; i++) {
             var l = getFactors(numbers[i]);
             resultSet.retainAll(l);
