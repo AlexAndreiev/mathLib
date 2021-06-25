@@ -99,6 +99,18 @@ public class FactorsTest {
 
     @Test
     void getMaxCommonDivider() {
+        assertThrows(NullPointerException.class, () -> Factors.getMaxCommonDivider(null));
+        assertThrows(IllegalArgumentException.class, () -> Factors.getMaxCommonDivider(new int[] {}));
+
+        int res;
+        res = Factors.getMaxCommonDivider(new int[] {18, 45});
+        assertEquals(9, res);
+        res = Factors.getMaxCommonDivider(new int[] {50, 25, 100});
+        assertEquals(25, res);
+        res = Factors.getMaxCommonDivider(new int[] {0, 45});
+        assertEquals(0, res);
+
+
     }
 
 }

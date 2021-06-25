@@ -104,10 +104,31 @@ public class Factors {
     }
 
     public static int getMaxCommonDivider(int[] numbers) {
-//        Щоб знайти НСД двох чисел:
-//        1) розкладіть дані числа на прості множники;
-//        2) знайдіть добуток спільних дільників даних чисел.
-        return 0;
+        Objects.requireNonNull(numbers, "`numbers` parameter cannot be null");
+        if (numbers.length == 0) throw new IllegalArgumentException("argument has zero size");
+
+        // 1. get prime factors for each number
+        var lists = new ArrayList<List<Integer>>(numbers.length);
+        for (var num : numbers) {
+            if (num == 0) return 0;
+            var primeFactors = getPrimeFactors(num, true);
+            lists.add(primeFactors);
+        }
+        var minList = lists.stream().min(Comparator.comparing(List::size)).get();
+        var resultList = new ArrayList(minList);
+        lists.remove(minList);
+        for (var n : minList) {
+            for (var list : lists) {
+                if (!list.contains(n)) {
+                    resultList.remove(n);
+                    break;
+                }
+                list.remove(n);
+            }
+        }
+        // 2. Result is a product of common factors
+        var res = resultList.stream().mapToInt(n -> (int) n).reduce(1, (a, b) -> a * b);
+        return res;
     }
 
 }
