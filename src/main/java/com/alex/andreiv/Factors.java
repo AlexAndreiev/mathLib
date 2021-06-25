@@ -61,6 +61,8 @@ public class Factors {
         var hasPrimeNumber = false;
         for (var num : numbers) {
             if (num == 0) return factorsList;
+            // if there is at lest one prime number common factor might be 1,
+            // prime number and numbers for which this prime number is a factor
             if (isPrime(num)) {
                 hasPrimeNumber = false;
                 minNumber = num;
@@ -72,31 +74,20 @@ public class Factors {
         factorsList.add(1);
         if (minNumber == 1) return factorsList;
 
-        int i;
         if (!hasPrimeNumber) {
             var divider = 2;
             while (divider <= minNumber / 2) {
-                i = 0;
-                while (i < len) {
-                    if (!isDividerFor(divider, numbers[i]))
-                        break;
-                    i++;
-                }
+                int finalDivider = divider;
                 // is divider for all numbers
-                if (i == len)
+                if (Arrays.stream(numbers).allMatch(n -> isDividerFor(finalDivider, n)))
                     factorsList.add(divider);
                 divider++;
             }
         }
 
-        i = 0;
-        while (i < len) {
-            if (!isDividerFor(minNumber, numbers[i]))
-                return factorsList;
-            i++;
-        }
-
-        factorsList.add(minNumber);
+        int finalMinNumber = minNumber;
+        if (Arrays.stream(numbers).allMatch(n -> isDividerFor(finalMinNumber, n)))
+            factorsList.add(minNumber);
         return factorsList;
     }
 
