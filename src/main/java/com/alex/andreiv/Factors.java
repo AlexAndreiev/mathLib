@@ -150,4 +150,23 @@ public class Factors {
         }
         return a;
     }
+
+/*
+    The difference of the two numbers a and b is replaced by the remainder of the Euclidean division
+    (also called division with remainder) of a by b.
+    Denoting this remainder as a mod b, the algorithm replaces (a, b) by (b, a mod b) repeatedly
+    until the pair is (d, 0), where d is the greatest common divisor.
+*/
+    public static int getGreatestCommonDivisorEuclideanAlg(int a, int b) {
+        if (a <= 0  || b <= 0) throw new IllegalArgumentException("arguments should be > than zero");
+
+        if (a == b) return a;
+        while (a != 0 && b != 0) {
+            if (a > b)
+                a %= b;
+            else
+                b %= a;
+        }
+        return Math.max(a, b);
+    }
 }

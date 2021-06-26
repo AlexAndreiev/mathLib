@@ -123,4 +123,17 @@ public class FactorsTest {
         res = Factors.getGreatestCommonDivisorEuclidAlg(45, 45);
         assertEquals(45, res);
     }
+
+    @Test
+    void getGreatestCommonDivisorEuclideanAlg() {
+        assertThrows(IllegalArgumentException.class, () -> Factors.getGreatestCommonDivisorEuclideanAlg(0, 2));
+
+        int res;
+        res = Factors.getGreatestCommonDivisorEuclideanAlg(18, 45);
+        assertEquals(9, res);
+        res = Factors.getGreatestCommonDivisorEuclideanAlg(50, 25);
+        assertEquals(25, res);
+        res = Factors.getGreatestCommonDivisorEuclideanAlg(45, 45);
+        assertEquals(45, res);
+    }
 }
