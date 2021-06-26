@@ -136,4 +136,16 @@ public class FactorsTest {
         res = Factors.getGreatestCommonDivisorEuclideanAlg(45, 45);
         assertEquals(45, res);
     }
+
+    @Test
+    void isCoPrime() {
+        assertThrows(NullPointerException.class, () -> Factors.isCoPrime(null));
+        assertThrows(IllegalArgumentException.class, () -> Factors.isCoPrime(new int[] {}));
+
+        assertTrue(Factors.isCoPrime(new int[] {44, 95}));
+        assertFalse(Factors.isCoPrime(new int[] {0, 1}));
+        assertFalse(Factors.isCoPrime(new int[] {6, 21}));
+        assertFalse(Factors.isCoPrime(new int[] {27, 111}));
+        assertFalse(Factors.isCoPrime(new int[] {36, 117}));
+    }
 }

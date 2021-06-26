@@ -169,4 +169,23 @@ public class Factors {
         }
         return Math.max(a, b);
     }
+
+    /*
+    * two integers a and b are coprime, relatively prime or mutually prime if the only positive integer
+    * that is a divisor of both of them is 1
+    * Consequently, any prime number that divides one of a or b does not divide the other.
+    * This is equivalent to their greatest common divisor (gcd) being 1.
+    * One says also a is prime to b or a is coprime with b.
+    * */
+    public static boolean isCoPrime(int[] numbers) {
+        Objects.requireNonNull(numbers, "`numbers` parameter cannot be null");
+        if (numbers.length == 0) throw new IllegalArgumentException("argument has zero size");
+        var commonFactors = getCommonFactors(numbers);
+        return commonFactors.size() == 1 && commonFactors.get(0) == 1;
+    }
 }
+
+
+//TODO
+// Lehmer's GCD algorithm
+// Binary GCD algorithm
