@@ -29,14 +29,14 @@ public class FactorsTest {
     }
 
     @Test
-    void isCommonDivider() {
-        assertThrows(NullPointerException.class, () -> Factors.isCommonDivider(null, 2));
-        assertThrows(IllegalArgumentException.class, () -> Factors.isCommonDivider(new int[] {4, 8}, 0));
+    void isCommonDivisor() {
+        assertThrows(NullPointerException.class, () -> Factors.isCommonDivisor(null, 2));
+        assertThrows(IllegalArgumentException.class, () -> Factors.isCommonDivisor(new int[] {4, 8}, 0));
 
-        assertTrue(Factors.isCommonDivider(new int[]{4, 8}, 2));
-        assertFalse(Factors.isCommonDivider(new int[]{38, 13}, 2));
-        assertTrue(Factors.isCommonDivider(new int[]{48, 8}, 8));
-        assertTrue(Factors.isCommonDivider(new int[]{4, 8}, 1));
+        assertTrue(Factors.isCommonDivisor(new int[]{4, 8}, 2));
+        assertFalse(Factors.isCommonDivisor(new int[]{38, 13}, 2));
+        assertTrue(Factors.isCommonDivisor(new int[]{48, 8}, 8));
+        assertTrue(Factors.isCommonDivisor(new int[]{4, 8}, 1));
 
     }
 
@@ -98,19 +98,29 @@ public class FactorsTest {
     }
 
     @Test
-    void getMaxCommonDivider() {
-        assertThrows(NullPointerException.class, () -> Factors.getMaxCommonDivider(null));
-        assertThrows(IllegalArgumentException.class, () -> Factors.getMaxCommonDivider(new int[] {}));
+    void getGreatestCommonDivisor() {
+        assertThrows(NullPointerException.class, () -> Factors.getGreatestCommonDivisor(null));
+        assertThrows(IllegalArgumentException.class, () -> Factors.getGreatestCommonDivisor(new int[] {}));
 
         int res;
-        res = Factors.getMaxCommonDivider(new int[] {18, 45});
+        res = Factors.getGreatestCommonDivisor(new int[] {18, 45});
         assertEquals(9, res);
-        res = Factors.getMaxCommonDivider(new int[] {50, 25, 100});
+        res = Factors.getGreatestCommonDivisor(new int[] {50, 25, 100});
         assertEquals(25, res);
-        res = Factors.getMaxCommonDivider(new int[] {0, 45});
+        res = Factors.getGreatestCommonDivisor(new int[] {0, 45});
         assertEquals(0, res);
-
-
     }
 
+    @Test
+    void getGreatestCommonDivisorEuclidAlg() {
+        assertThrows(IllegalArgumentException.class, () -> Factors.getGreatestCommonDivisorEuclidAlg(0, 2));
+
+        int res;
+        res = Factors.getGreatestCommonDivisorEuclidAlg(18, 45);
+        assertEquals(9, res);
+        res = Factors.getGreatestCommonDivisorEuclidAlg(50, 25);
+        assertEquals(25, res);
+        res = Factors.getGreatestCommonDivisorEuclidAlg(45, 45);
+        assertEquals(45, res);
+    }
 }

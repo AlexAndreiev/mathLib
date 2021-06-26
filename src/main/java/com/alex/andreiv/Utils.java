@@ -2,7 +2,7 @@ package com.alex.andreiv;
 
 public class Utils {
 
-    public static boolean isDividerFor(int divider, int number) {
+    public static boolean isDivisorFor(int divider, int number) {
         if (divider == 0)
             throw new ArithmeticException("divider can't be 0");
         if (number == 0) return false;

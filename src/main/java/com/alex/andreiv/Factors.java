@@ -16,7 +16,7 @@ public class Factors {
             var tmpNumber = number;
             var divider = 2;
             while (divider <= tmpNumber / 2) {
-                if (isDividerFor(divider, tmpNumber))
+                if (isDivisorFor(divider, tmpNumber))
                     factorsList.add(divider);
                 divider++;
             }
@@ -41,7 +41,7 @@ public class Factors {
         var prime = primeGenerator.getNextPrime();
 
         while (number >= prime) {
-            if (isDividerFor(prime, number)) {
+            if (isDivisorFor(prime, number)) {
                 number /= prime;
                 primeFactorsList.add(prime);
                 if (isFullList)
@@ -79,31 +79,31 @@ public class Factors {
             while (divider <= minNumber / 2) {
                 int finalDivider = divider;
                 // is divider for all numbers
-                if (Arrays.stream(numbers).allMatch(n -> isDividerFor(finalDivider, n)))
+                if (Arrays.stream(numbers).allMatch(n -> isDivisorFor(finalDivider, n)))
                     factorsList.add(divider);
                 divider++;
             }
         }
 
         int finalMinNumber = minNumber;
-        if (Arrays.stream(numbers).allMatch(n -> isDividerFor(finalMinNumber, n)))
+        if (Arrays.stream(numbers).allMatch(n -> isDivisorFor(finalMinNumber, n)))
             factorsList.add(minNumber);
         return factorsList;
     }
 
 
-    public static boolean isCommonDivider(int[] numbers, int divider) {
+    public static boolean isCommonDivisor(int[] numbers, int divider) {
         Objects.requireNonNull(numbers, "`numbers` parameter cannot be null");
         if (divider == 0) throw new IllegalArgumentException("`divider` parameter cannot be 0");
 
         for (var num : numbers) {
-            if (!isDividerFor(divider, num))
+            if (!isDivisorFor(divider, num))
                 return false;
         }
         return true;
     }
 
-    public static int getMaxCommonDivider(int[] numbers) {
+    public static int getGreatestCommonDivisor(int[] numbers) {
         Objects.requireNonNull(numbers, "`numbers` parameter cannot be null");
         if (numbers.length == 0) throw new IllegalArgumentException("argument has zero size");
 
@@ -131,4 +131,23 @@ public class Factors {
         return res;
     }
 
+
+    /* given two positive integers a and b such that a > b,
+    * the common divisors of a and b are the same as the common divisors of a – b and b.
+    * Euclid's method for computing the greatest common divisor of two positive integers consists of replacing
+    * the larger number by the difference of the numbers,
+    * and repeating this until the two numbers are equal: that is their greatest common divisor.
+    */
+    public static int getGreatestCommonDivisorEuclidAlg(int a, int b) {
+        if (a <= 0  || b <= 0) throw new IllegalArgumentException("arguments should be > than zero");
+
+        if (a == b) return a;
+        while (a != b) {
+            if (a > b)
+                a -= b;
+            else
+                b -= a;
+        }
+        return a;
+    }
 }

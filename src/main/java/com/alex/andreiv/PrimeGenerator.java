@@ -34,7 +34,7 @@ public class PrimeGenerator {
     private boolean isDividedByExistingPrimes(int num){
         if (_primeList.size() == 0) return false;
         for (var factor : _primeList)
-            if (isDividerFor(factor, num))
+            if (isDivisorFor(factor, num))
                 return true;
         return false;
     }
