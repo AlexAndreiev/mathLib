@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class UtilsTest {
 
     @Test
-    void isDividerFor() {
+    void isDivisorFor() {
         assertThrows(ArithmeticException.class, () -> Utils.isDivisorFor(0, 123) );
         assertTrue(Utils.isDivisorFor(2, 4));
         assertTrue(Utils.isDivisorFor(9, 27));
@@ -27,5 +27,21 @@ class UtilsTest {
         assertTrue(Utils.isPrime(3));
         assertFalse(Utils.isPrime(4));
         assertTrue(Utils.isPrime(1987));
+    }
+
+    @Test
+    void getNumbersProduct() {
+        long res;
+        res = Utils.getNumbersProduct(new int[] {0, 2});
+        assertEquals(0, res);
+
+        res = Utils.getNumbersProduct(new int[] {2, 2});
+        assertEquals(4, res);
+
+        res = Utils.getNumbersProduct(new int[] {3, 2, 5, 7});
+        assertEquals(210, res);
+
+        res = Utils.getNumbersProduct(new int[] {78, 2, 3, 74, 231, 63, 24});
+        assertEquals(12095987904L, res);
     }
 }

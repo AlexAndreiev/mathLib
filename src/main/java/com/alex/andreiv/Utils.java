@@ -41,4 +41,14 @@ public class Utils {
 
         return true;
     }
+
+    public static long getNumbersProduct(int[] numbers){
+        long result = 1;
+        for (var num : numbers) {
+            result *= num;
+            if (result == 0)
+                return 0;
+        }
+        return result;
+    }
 }
