@@ -166,5 +166,8 @@ public class FactorsTest {
 
         res = Factors.getLeastCommonMultiple(new int[] {8, 21});
         assertEquals(168, res);
+
+        res = Factors.getLeastCommonMultiple(new int[] {9, 12, 15});
+        assertEquals(180, res);
     }
 }
