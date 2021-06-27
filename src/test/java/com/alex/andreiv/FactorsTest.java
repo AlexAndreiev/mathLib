@@ -148,4 +148,23 @@ public class FactorsTest {
         assertFalse(Factors.isCoPrime(new int[] {27, 111}));
         assertFalse(Factors.isCoPrime(new int[] {36, 117}));
     }
+
+    @Test
+    void getLeastCommonMultiple() {
+        assertThrows(NullPointerException.class, () -> Factors.getLeastCommonMultiple(null));
+        assertThrows(IllegalArgumentException.class, () -> Factors.getLeastCommonMultiple(new int[] {}));
+
+        long res;
+        res = Factors.getLeastCommonMultiple(new int[] {4, 0});
+        assertEquals(0, res);
+
+        res = Factors.getLeastCommonMultiple(new int[] {4, 6});
+        assertEquals(12, res);
+
+        res = Factors.getLeastCommonMultiple(new int[] {45, 18});
+        assertEquals(90, res);
+
+        res = Factors.getLeastCommonMultiple(new int[] {8, 21});
+        assertEquals(168, res);
+    }
 }

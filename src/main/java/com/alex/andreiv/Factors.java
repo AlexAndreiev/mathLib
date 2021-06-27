@@ -183,9 +183,44 @@ public class Factors {
         var commonFactors = getCommonFactors(numbers);
         return commonFactors.size() == 1 && commonFactors.get(0) == 1;
     }
-}
-
-
 //TODO
 // Lehmer's GCD algorithm
 // Binary GCD algorithm
+
+    public static long getLeastCommonMultiple(int[] numbers) {
+        Objects.requireNonNull(numbers, "`numbers` parameter cannot be null");
+        if (numbers.length == 0) throw new IllegalArgumentException("argument has zero size");
+
+        /* there is no another factors for coprime numbers than 1. So LCM is their product */
+        if (isCoPrime(numbers))
+            return Utils.getNumbersProduct(numbers);
+
+        /*
+        * 1. Get prime factors of all numbers
+        * 2. Result is a product of all distinct factors
+        */
+        var primeFactors = new ArrayList<List<Integer>>();
+        for (var num : numbers) {
+            if (num == 0) return 0;
+            var factors = getPrimeFactors(num, true);
+            primeFactors.add(factors);
+        }
+
+        for (int i = 0; i < primeFactors.size(); i++) {
+            for (var factor : primeFactors.get(i)) {
+                for (int j = i + 1; j < primeFactors.size(); j++)
+                {
+                    var list = primeFactors.get(j);
+                    if (list.contains(factor))
+                        list.remove(factor);
+                }
+            }
+        }
+
+        long result = 1;
+        for (var list : primeFactors)
+            result *= Utils.getNumbersProduct(list.stream().mapToInt(i -> i).toArray());
+        return result;
+    }
+
+}
