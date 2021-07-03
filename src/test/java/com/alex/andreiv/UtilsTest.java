@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UtilsTest {
+public class UtilsTest {
 
     @Test
-    void isDivisorFor() {
-        assertThrows(ArithmeticException.class, () -> Utils.isDivisorFor(0, 123) );
+    public void testIsDivisorFor() {
+        assertThrows(ArithmeticException.class, () -> Utils.isDivisorFor(0, 123));
         assertTrue(Utils.isDivisorFor(2, 4));
         assertTrue(Utils.isDivisorFor(9, 27));
         assertTrue(Utils.isDivisorFor(14, 28));
@@ -20,7 +20,7 @@ class UtilsTest {
     }
 
     @Test
-    void isPrime() {
+    public void testIsPrime() {
         assertFalse(Utils.isPrime(0));
         assertFalse(Utils.isPrime(1));
         assertTrue(Utils.isPrime(2));
@@ -30,18 +30,18 @@ class UtilsTest {
     }
 
     @Test
-    void getNumbersProduct() {
+    public void testGetNumbersProduct() {
         long res;
-        res = Utils.getNumbersProduct(new int[] {0, 2});
+        res = Utils.getNumbersProduct(new long[] {0, 2});
         assertEquals(0, res);
 
-        res = Utils.getNumbersProduct(new int[] {2, 2});
+        res = Utils.getNumbersProduct(new long[] {2, 2});
         assertEquals(4, res);
 
-        res = Utils.getNumbersProduct(new int[] {3, 2, 5, 7});
+        res = Utils.getNumbersProduct(new long[] {3, 2, 5, 7});
         assertEquals(210, res);
 
-        res = Utils.getNumbersProduct(new int[] {78, 2, 3, 74, 231, 63, 24});
+        res = Utils.getNumbersProduct(new long[] {78, 2, 3, 74, 231, 63, 24});
         assertEquals(12095987904L, res);
     }
 }

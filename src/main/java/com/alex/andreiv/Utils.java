@@ -2,7 +2,7 @@ package com.alex.andreiv;
 
 public class Utils {
 
-    public static boolean isDivisorFor(int divider, int number) {
+    public static boolean isDivisorFor(long divider, long number) {
         if (divider == 0)
             throw new ArithmeticException("divider can't be 0");
         if (number == 0) return false;
@@ -15,7 +15,7 @@ public class Utils {
      3 divides (6k+3)
      check if n is divisible by 2 or 3, then to check through all the numbers of form 6k+-1;
 */
-    public static boolean isPrime(int number)
+    public static boolean isPrime(long number)
     {
         if (number <= 1) return false;
         if (number <= 3) return true;
@@ -42,7 +42,7 @@ public class Utils {
         return true;
     }
 
-    public static long getNumbersProduct(int[] numbers){
+    public static long getNumbersProduct(long[] numbers){
         long result = 1;
         for (var num : numbers) {
             result *= num;

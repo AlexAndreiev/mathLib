@@ -29,8 +29,8 @@ public class Factors {
     /*
     * Simple optimized school algorithm
     * */
-    public static List<Integer> getPrimeFactors(int number, boolean isFullList){
-        var primeFactorsList = new ArrayList<Integer>();
+    public static List<Long> getPrimeFactors(long number, boolean isFullList){
+        var primeFactorsList = new ArrayList<Long>();
         //optimization
         if (isPrime(number)) {
             primeFactorsList.add(number);
@@ -52,10 +52,10 @@ public class Factors {
         return primeFactorsList;
     }
 
-    public static List<Integer> getCommonFactors(int[] numbers) {
+    public static List<Long> getCommonFactors(long[] numbers) {
         Objects.requireNonNull(numbers, "`numbers` parameter cannot be null");
         if (numbers.length == 0) throw new IllegalArgumentException("argument has zero size");
-        var factorsList = new ArrayList<Integer>();
+        var factorsList = new ArrayList<Long>();
         var len = numbers.length;
         var minNumber = numbers[0];
         var hasPrimeNumber = false;
@@ -71,13 +71,13 @@ public class Factors {
             if (minNumber > num) minNumber = num;
         }
 
-        factorsList.add(1);
+        factorsList.add(1L);
         if (minNumber == 1) return factorsList;
 
         if (!hasPrimeNumber) {
-            var divider = 2;
+            var divider = 2L;
             while (divider <= minNumber / 2) {
-                int finalDivider = divider;
+                var finalDivider = divider;
                 // is divider for all numbers
                 if (Arrays.stream(numbers).allMatch(n -> isDivisorFor(finalDivider, n)))
                     factorsList.add(divider);
@@ -85,7 +85,7 @@ public class Factors {
             }
         }
 
-        int finalMinNumber = minNumber;
+        var finalMinNumber = minNumber;
         if (Arrays.stream(numbers).allMatch(n -> isDivisorFor(finalMinNumber, n)))
             factorsList.add(minNumber);
         return factorsList;
@@ -103,12 +103,12 @@ public class Factors {
         return true;
     }
 
-    public static int getGreatestCommonDivisor(int[] numbers) {
+    public static long getGreatestCommonDivisor(long[] numbers) {
         Objects.requireNonNull(numbers, "`numbers` parameter cannot be null");
         if (numbers.length == 0) throw new IllegalArgumentException("argument has zero size");
 
         // 1. get prime factors for each number
-        var lists = new ArrayList<List<Integer>>(numbers.length);
+        var lists = new ArrayList<List<Long>>(numbers.length);
         for (var num : numbers) {
             if (num == 0) return 0;
             var primeFactors = getPrimeFactors(num, true);
@@ -127,7 +127,7 @@ public class Factors {
             }
         }
         // 2. Result is a product of common factors
-        var res = resultList.stream().mapToInt(n -> (int) n).reduce(1, (a, b) -> a * b);
+        var res = resultList.stream().mapToLong(n -> (long) n).reduce(1, (a, b) -> a * b);
         return res;
     }
 
@@ -157,7 +157,7 @@ public class Factors {
     Denoting this remainder as a mod b, the algorithm replaces (a, b) by (b, a mod b) repeatedly
     until the pair is (d, 0), where d is the greatest common divisor.
 */
-    public static int getGreatestCommonDivisorEuclideanAlg(int a, int b) {
+    public static long getGreatestCommonDivisorEuclideanAlg(long a, long b) {
         if (a <= 0  || b <= 0) throw new IllegalArgumentException("arguments should be > than zero");
 
         if (a == b) return a;
@@ -177,7 +177,7 @@ public class Factors {
     * This is equivalent to their greatest common divisor (gcd) being 1.
     * One says also a is prime to b or a is coprime with b.
     * */
-    public static boolean isCoPrime(int[] numbers) {
+    public static boolean isCoPrime(long[] numbers) {
         Objects.requireNonNull(numbers, "`numbers` parameter cannot be null");
         if (numbers.length == 0) throw new IllegalArgumentException("argument has zero size");
         var commonFactors = getCommonFactors(numbers);
@@ -187,7 +187,7 @@ public class Factors {
 // Lehmer's GCD algorithm
 // Binary GCD algorithm
 
-    public static long getLeastCommonMultiple(int[] numbers) {
+    public static long getLeastCommonMultiple(long[] numbers) {
         Objects.requireNonNull(numbers, "`numbers` parameter cannot be null");
         if (numbers.length == 0) throw new IllegalArgumentException("argument has zero size");
 
@@ -199,7 +199,7 @@ public class Factors {
         * 1. Get prime factors of all numbers
         * 2. Result is a product of all distinct factors
         */
-        var primeFactors = new ArrayList<List<Integer>>();
+        var primeFactors = new ArrayList<List<Long>>();
         for (var num : numbers) {
             if (num == 0) return 0;
             var factors = getPrimeFactors(num, true);
@@ -219,7 +219,7 @@ public class Factors {
 
         long result = 1;
         for (var list : primeFactors)
-            result *= Utils.getNumbersProduct(list.stream().mapToInt(i -> i).toArray());
+            result *= Utils.getNumbersProduct(list.stream().mapToLong(i -> i).toArray());
         return result;
     }
 

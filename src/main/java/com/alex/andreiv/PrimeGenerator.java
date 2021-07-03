@@ -6,15 +6,15 @@ import static com.alex.andreiv.Utils.*;
 
 public class PrimeGenerator {
 
-    private List<Integer> _primeList;
-    private int _currentPrime;
+    private List<Long> _primeList;
+    private long _currentPrime;
 
     public PrimeGenerator(){
         reset();
     }
 
-    public int getNextPrime(){
-        int genNum = _currentPrime;
+    public long getNextPrime(){
+        var genNum = _currentPrime;
         if (_currentPrime < 2)
             _currentPrime = 2;
         else
@@ -31,7 +31,7 @@ public class PrimeGenerator {
         _currentPrime = -1;
     }
 
-    private boolean isDividedByExistingPrimes(int num){
+    private boolean isDividedByExistingPrimes(long num){
         if (_primeList.size() == 0) return false;
         for (var factor : _primeList)
             if (isDivisorFor(factor, num))
