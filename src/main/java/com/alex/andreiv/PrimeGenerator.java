@@ -2,19 +2,19 @@ package com.alex.andreiv;
 
 import java.util.ArrayList;
 import java.util.List;
+import static com.alex.andreiv.Utils.*;
 
 public class PrimeGenerator {
 
-    private List<Integer> _primeList;
-    private int _currentPrime;
+    private List<Long> _primeList;
+    private long _currentPrime;
 
     public PrimeGenerator(){
-        _primeList = new ArrayList<>();
-        _currentPrime = -1;
+        reset();
     }
 
-    public int getNextPrime(){
-        int genNum = _currentPrime;
+    public long getNextPrime(){
+        var genNum = _currentPrime;
         if (_currentPrime < 2)
             _currentPrime = 2;
         else
@@ -26,10 +26,15 @@ public class PrimeGenerator {
         return _currentPrime;
     }
 
-    private boolean isDividedByExistingPrimes(int num){
+    public void reset(){
+        _primeList = new ArrayList<>();
+        _currentPrime = -1;
+    }
+
+    private boolean isDividedByExistingPrimes(long num){
         if (_primeList.size() == 0) return false;
         for (var factor : _primeList)
-            if (num % factor == 0)
+            if (isDivisorFor(factor, num))
                 return true;
         return false;
     }
