@@ -67,12 +67,16 @@ public class Fraction implements Comparable<Fraction> {
     @Override
     public int compareTo(Fraction fraction) {
         // due to Fraction implementation fractions is already reduced
+
         // 1. Find Least Common Multiple (LCM)
         var lcm = Factors.getLeastCommonMultiple(new long[] {this.denominator, fraction.denominator});
-        // 2. Find additional multiplier for new denominator
-        var multiplier = lcm / this.denominator;
+
+        // 2. Find additional multipliers for new denominator
+        var multiplier1 = lcm / this.denominator;
+        var multiplier2 = lcm / fraction.denominator;
+
         // 3. Since we have lcm as a new denominator, now we need to compare numerators multiplied to the multiplier.
-        var res = ((this.numerator * multiplier) - (fraction.numerator * multiplier));
+        var res = ((this.numerator * multiplier1) - (fraction.numerator * multiplier2));
         // need this step due to range overflow
         if (res < 0) return -1;
         else if (res > 0) return 1;
