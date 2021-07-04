@@ -31,6 +31,32 @@ class FractionTest {
 
     @Test
     void testCompareTo() {
+        var fraction1 = new Fraction(1, 5);
+        var fraction2 = new Fraction(3, 15);
+        assertTrue(fraction1.compareTo(fraction2) == 0);
 
+        fraction1 = new Fraction(1, 6);
+        fraction2 = new Fraction(5, 18);
+        assertTrue(fraction1.compareTo(fraction2) < 0);
+
+        fraction1 = new Fraction(3, 5);
+        fraction2 = new Fraction(4, 15);
+        assertTrue(fraction1.compareTo(fraction2) > 0);
+
+        fraction1 = new Fraction(7, 9);
+        fraction2 = new Fraction(11, 24);
+        assertTrue(fraction1.compareTo(fraction2) > 0);
+
+        fraction1 = new Fraction(11, 21);
+        fraction2 = new Fraction(17, 28);
+        assertTrue(fraction1.compareTo(fraction2) < 0);
+
+        fraction1 = new Fraction(31, 40);
+        fraction2 = new Fraction(18, 35);
+        assertTrue(fraction1.compareTo(fraction2) > 0);
+
+        fraction1 = new Fraction(5, 9);
+        fraction2 = new Fraction(12, 39);
+        assertTrue(fraction1.compareTo(fraction2) > 0);
     }
 }
