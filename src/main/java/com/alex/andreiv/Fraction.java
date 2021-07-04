@@ -5,9 +5,8 @@ import lombok.Getter;
 @Getter
 public class Fraction implements Comparable<Fraction> {
 
-//    private byte sign = 1;
-    private long numerator = 0;
-    private long denominator = 0;
+    private long numerator;
+    private long denominator;
 
     public Fraction(long numerator, long denominator) {
         if (numerator == 0 || denominator == 0)
