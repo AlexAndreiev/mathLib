@@ -4,8 +4,11 @@ import java.util.List;
 
 public class Line2D extends AbstractLine<Point2D, Line2D> {
 
-    public Line2D(Point2D start, Point2D end) {
-        super(start, end);
+    public Line2D(Point2D startPoint, Point2D endPoint) {
+
+        super(startPoint, endPoint);
+        if (startPoint.getX() == endPoint.getX() && startPoint.getY() == endPoint.getY())
+            throw new IllegalArgumentException("start pont cannot be equal an end point");
     }
 
     @Override
