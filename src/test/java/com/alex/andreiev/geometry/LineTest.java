@@ -40,5 +40,13 @@ class LineTest {
 
     @Test
     void getLength() {
+        var line = new Line(new Point(0), new Point(8));
+        assertEquals(8, line.getLength());
+
+        line = new Line(new Point(0), new Point(8));
+        line.addPoint(new Point(4));
+        line.addPoint(new Point(-2));
+        line.addPoint(new Point(100));
+        assertEquals(102, line.getLength());
     }
 }
