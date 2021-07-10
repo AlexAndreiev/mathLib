@@ -1,17 +1,26 @@
 package com.alex.andreiev.geometry;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 @Getter
 @RequiredArgsConstructor
-public class Point{
+public class Point implements Cloneable, Comparable<Point>{
 
     final private double x;
 
+    public Point(Point point) {
+        this.x = point.getX();
+    }
+
     @Override
     protected Object clone() {
-        return new Point(this.getX());
+        Point clone = null;
+        try {
+            clone = (Point) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return clone;
     }
 
     @Override
@@ -21,5 +30,11 @@ public class Point{
         if (obj == null) return false;
         if (this.getClass() != obj.getClass()) return false;
         return this.x == ((Point)obj).x;
+    }
+
+    @Override
+//    public int compareTo(@org.jetbrains.annotations.NotNull Point point) {
+    public int compareTo(@NonNull Point point) {
+        return (int)(this.getX() - point.getX());
     }
 }
