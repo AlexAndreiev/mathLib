@@ -21,7 +21,7 @@ public class PointTest {
         var clonedPoint = (Point) point.clone();
         assertEquals(point.getX(), clonedPoint.getX());
         // make sure references are not equal
-        assertTrue(point != clonedPoint);
+        assertNotSame(point, clonedPoint);
     }
 
     @Test
@@ -29,7 +29,7 @@ public class PointTest {
         var point1 = new Point(2);
         var point2 = new Point(2);
         // make sure references are not equal
-        assertTrue(point1 != point2);
+        assertNotSame(point1, point2);
         // calls equals method
         assertEquals(point1, point2);
     }
