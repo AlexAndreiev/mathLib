@@ -1,5 +1,6 @@
 package com.alex.andreiev.geometry;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -28,13 +29,30 @@ public abstract class AbstractLine<P extends Point, L extends AbstractLine<P, L>
     }
 
     abstract public void addPoint(P point);
+
     public P getMinPoint() { return points.first(); }
+
     public P getMaxPoint() { return points.last(); }
+
     public List<L> getSections() {
-//        var sections = new ArrayList<P>();
-//        sections.clone();
-        //        for (points)
-        return null;
+        var sections = new ArrayList<L>();
+        var iterator = points.iterator();
+        var startPoint = iterator.next();
+        var pointClass = startPoint.getClass();
+        try {
+            var constructor = this.getClass().getConstructor(new Class[] {pointClass, pointClass});
+            while (iterator.hasNext()) {
+                var endPoint = iterator.next();
+                var selection = (L) constructor.newInstance(startPoint, endPoint);
+                sections.add(selection);
+                startPoint = endPoint;
+            }
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException
+                | NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new RuntimeException("AbstractLine.getSections(): " + e.getMessage(), e.getCause());
+        }
+        return sections;
     }
     abstract public double getLength();
 
