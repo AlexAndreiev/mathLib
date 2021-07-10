@@ -1,10 +1,10 @@
-package com.alex.andreiv.geometry;
+package com.alex.andreiev.geometry;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class Point2DTest {
+public class Point2DTest {
 
     @Test
     void getY() {

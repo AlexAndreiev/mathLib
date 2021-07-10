@@ -1,7 +1,6 @@
-package com.alex.andreiv.geometry;
+package com.alex.andreiev.geometry;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
 public class Point2D extends Point {

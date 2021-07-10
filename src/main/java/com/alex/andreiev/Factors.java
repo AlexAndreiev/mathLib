@@ -1,8 +1,8 @@
-package com.alex.andreiv;
+package com.alex.andreiev;
 
 import java.util.*;
 
-import static com.alex.andreiv.Utils.*;
+import static com.alex.andreiev.Utils.*;
 
 public class Factors {
 

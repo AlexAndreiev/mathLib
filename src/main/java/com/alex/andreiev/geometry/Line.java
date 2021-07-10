@@ -1,14 +1,12 @@
-package com.alex.andreiv.geometry;
+package com.alex.andreiev.geometry;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Line extends AbstractLine<Point, Line> {
 
-    public Line(Point startPoint, Point endPoint) {
-
-        super(startPoint, endPoint);
-        if (startPoint.getX() == endPoint.getX())
+    public Line(Point point1, Point point2) {
+        super(point1, point2);
+        if (point1.getX() == point2.getX())
             throw new IllegalArgumentException("start pont cannot be equal an end point");
     }
 
@@ -19,12 +17,7 @@ public class Line extends AbstractLine<Point, Line> {
     }
 
     @Override
-    public List<Line> getSections() {
-        return null;
-    }
-
-    @Override
     public double getLength() {
-        return 0;
+        return  getMaxPoint().getX() - getMinPoint().getX();
     }
 }
