@@ -1,4 +1,4 @@
-package com.alex.andreiv.geometry;
+package com.alex.andreiev.geometry;
 
 import jakarta.validation.constraints.Min;
 import lombok.Getter;
@@ -9,10 +9,10 @@ import lombok.RequiredArgsConstructor;
 public class Rectangle {
 
     @Min(value = 0, message = "width cannot be negative")
-    private int width;
+    private double width;
     @Min(value = 0, message = "height cannot be negative")
-    private int height;
+    private double height;
 
-    public int getPerimeter() { return 2 * (width + height); }
-    public int getSquare() { return width * height; }
+    public double getPerimeter() { return 2 * (width + height); }
+    public double getSquare() { return width * height; }
 }

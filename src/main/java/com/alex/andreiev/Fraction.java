@@ -1,4 +1,4 @@
-package com.alex.andreiv;
+package com.alex.andreiev;
 
 import lombok.Getter;
 

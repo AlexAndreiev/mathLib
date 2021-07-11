@@ -1,4 +1,4 @@
-package com.alex.andreiv.geometry;
+package com.alex.andreiev.geometry;
 
 import org.junit.jupiter.api.Test;
 
