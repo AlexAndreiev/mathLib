@@ -35,6 +35,11 @@ public abstract class AbstractLine<P extends Point, L extends AbstractLine<P, L>
         points.add(point);
     }
 
+    public void removePoint(P point) {
+        Objects.requireNonNull(point, "argument is null");
+        points.remove(point);
+    }
+
     public P getMinPoint() { return points.first(); }
 
     public P getMaxPoint() { return points.last(); }
