@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.Objects;
+import java.util.Collection;
 
 public abstract class AbstractLine<P extends Point, L extends AbstractLine<P, L>> {
 
@@ -35,11 +36,21 @@ public abstract class AbstractLine<P extends Point, L extends AbstractLine<P, L>
         points.add(point);
     }
 
+    public void addPoints(Collection<P> points) {
+        for (var point : points)
+            addPoint(point);
+    }
+
     public void removePoint(P point) {
         Objects.requireNonNull(point, "argument is null");
         if (points.size() == 2)
             throw new RuntimeException("point can't be deleted. Line has only 2 points.");
         points.remove(point);
+    }
+
+    public void removePoints(Collection<P> points) {
+        for (var point : points)
+            removePoint(point);
     }
 
     public P getMinPoint() { return points.first(); }

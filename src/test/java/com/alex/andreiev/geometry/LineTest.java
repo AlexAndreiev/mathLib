@@ -1,5 +1,6 @@
 package com.alex.andreiev.geometry;
 
+import kotlin.collections.ArrayDeque;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
@@ -25,13 +26,28 @@ class LineTest {
         line.addPoint(new Point(4));
         line.addPoint(new Point(-2));
         line.addPoint(new Point(100));
+        checkAddPoint(line);
+    }
+
+    @Test
+    void addPoints() {
+        var line = new Line(new Point(0), new Point(8));
+        var pointCollection = new ArrayList<Point>();
+        pointCollection.add(new Point(4));
+        pointCollection.add(new Point(-2));
+        pointCollection.add(new Point(100));
+        line.addPoints(pointCollection);
+        checkAddPoint(line);
+    }
+
+    private void checkAddPoint(AbstractLine line) {
         assertEquals(new Point(-2), line.getMinPoint());
         assertEquals(new Point(100), line.getMaxPoint());
         var points = line.getPoints();
         var actualArr = points.toArray(i -> new Point[points.size()]);
         assertArrayEquals(new Point[]{
-                new Point(-2), new Point(0), new Point(4),
-                new Point(8), new Point(100)},
+                        new Point(-2), new Point(0), new Point(4),
+                        new Point(8), new Point(100)},
                 actualArr);
     }
 
@@ -47,6 +63,20 @@ class LineTest {
         expectedCollection.add(new Point(0));
         expectedCollection.add(new Point(10));
         assertTrue(line.getPoints().containsAll(expectedCollection));
+    }
+
+    @Test
+    void removePoints(){
+        var line = new Line(new Point(0), new Point(8));
+        line.addPoint(new Point(10));
+        line.addPoint(new Point(2));
+        var pontCollection = new ArrayList<Point>();
+        pontCollection.add(new Point(0));
+        pontCollection.add(new Point(2));
+        line.removePoints(pontCollection);
+        var points = line.getPoints();
+        var actualArr = points.toArray(i -> new Point[points.size()]);
+        assertArrayEquals(new Point[]{new Point(8), new Point(10)}, actualArr);
     }
 
     @Test
