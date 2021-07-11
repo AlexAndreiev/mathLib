@@ -54,6 +54,17 @@ public abstract class AbstractLine<P extends Point, L extends AbstractLine<P, L>
         }
         return sections;
     }
+
     abstract public double getLength();
 
+    @Override
+    public boolean equals(Object obj) {
+        if (super.equals(obj)) return true;
+        if (obj == null) return false;
+        if (obj.getClass() != this.getClass()) return false;
+        var line = (AbstractLine)obj;
+//        under the hood AbstractSet checks if the length is the same
+//        and call TreeSet.containsAll->Map.contains method
+        return line.points.equals(points);
+    }
 }
