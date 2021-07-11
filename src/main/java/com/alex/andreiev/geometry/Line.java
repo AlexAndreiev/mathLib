@@ -11,12 +11,6 @@ public class Line extends AbstractLine<Point, Line> {
     }
 
     @Override
-    public void addPoint(Point point) {
-        Objects.requireNonNull(point, "argument is null");
-        points.add(point);
-    }
-
-    @Override
     public double getLength() {
         return  getMaxPoint().getX() - getMinPoint().getX();
     }

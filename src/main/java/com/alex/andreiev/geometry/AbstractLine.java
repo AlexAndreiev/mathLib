@@ -28,7 +28,12 @@ public abstract class AbstractLine<P extends Point, L extends AbstractLine<P, L>
         points.add(point2);
     }
 
-    abstract public void addPoint(P point);
+    public void addPoint(P point) {
+        Objects.requireNonNull(point, "argument is null");
+        if (points.contains(point))
+            throw new IllegalArgumentException("Line already contains this point");
+        points.add(point);
+    }
 
     public P getMinPoint() { return points.first(); }
 
