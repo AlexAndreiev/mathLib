@@ -1,6 +1,7 @@
 package com.alex.andreiev.geometry;
 
 import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,7 +36,34 @@ class LineTest {
     }
 
     @Test
+    void equals() {
+        var line = new Line(new Point(0), new Point(8));
+        assertNotEquals(line, new Line(new Point(0), new Point(9)));
+        assertEquals(line, new Line(new Point(0), new Point(8)));
+    }
+
+    @Test
     void getSections() {
+        var line = new Line(new Point(0), new Point(8));
+        line.addPoint(new Point(4));
+        line.addPoint(new Point(-2));
+        line.addPoint(new Point(100));
+        var lines = line.getSections();
+
+        var incorrectSizeSet = new ArrayList<Line>();
+        incorrectSizeSet.add(new Line(new Point(-2), new Point(0)));
+        incorrectSizeSet.add(new Line(new Point(0), new Point(4)));
+        incorrectSizeSet.add(new Line(new Point(4), new Point(8)));
+        assertNotEquals(lines.size(), incorrectSizeSet.size());
+
+        var incorrectSet = new ArrayList<Line>(incorrectSizeSet);
+        incorrectSet.add(new Line(new Point(4), new Point(99)));
+        assertEquals(lines.size(), incorrectSet.size());
+        assertFalse(lines.containsAll(incorrectSet));
+
+        var correctSet = new ArrayList<Line>(incorrectSizeSet);
+        correctSet.add(new Line(new Point(8), new Point(100)));
+        assertTrue(lines.containsAll(correctSet));
     }
 
     @Test
