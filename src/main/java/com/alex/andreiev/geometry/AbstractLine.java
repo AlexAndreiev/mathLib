@@ -37,6 +37,8 @@ public abstract class AbstractLine<P extends Point, L extends AbstractLine<P, L>
 
     public void removePoint(P point) {
         Objects.requireNonNull(point, "argument is null");
+        if (points.size() == 2)
+            throw new RuntimeException("point can't be deleted. Line has only 2 points.");
         points.remove(point);
     }
 

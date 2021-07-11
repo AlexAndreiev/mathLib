@@ -36,6 +36,20 @@ class LineTest {
     }
 
     @Test
+    void removePoint() {
+        var line = new Line(new Point(0), new Point(8));
+        assertThrows(RuntimeException.class, () -> line.removePoint(new Point(8)));
+        line.addPoint(new Point(10));
+        assertEquals(line.getPoints().size(), 3);
+        line.removePoint(new Point(8));
+        assertEquals(line.getPoints().size(), 2);
+        var expectedCollection = new ArrayList<Point>();
+        expectedCollection.add(new Point(0));
+        expectedCollection.add(new Point(10));
+        assertTrue(line.getPoints().containsAll(expectedCollection));
+    }
+
+    @Test
     void equals() {
         var line = new Line(new Point(0), new Point(8));
         assertNotEquals(line, new Line(new Point(0), new Point(9)));
