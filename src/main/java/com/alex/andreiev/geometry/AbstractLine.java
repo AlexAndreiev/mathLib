@@ -14,8 +14,8 @@ public abstract class AbstractLine<P extends Point, L extends AbstractLine<P, L>
 
     public Set<P> getPoints() {
         var set = new TreeSet<P>();
-        for (var point : points) {
-            var clonePoint = (P) point.clone();
+        for (Point point : points) {
+            var clonePoint = (P) (point.clone());
             set.add(clonePoint);
         }
         return set;

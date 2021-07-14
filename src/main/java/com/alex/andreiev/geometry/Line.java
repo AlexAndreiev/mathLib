@@ -1,7 +1,5 @@
 package com.alex.andreiev.geometry;
 
-import java.util.Objects;
-
 public class Line extends AbstractLine<Point, Line> {
 
     public Line(Point point1, Point point2) {
