@@ -8,4 +8,15 @@ import lombok.RequiredArgsConstructor;
 public class Point {
 
     final private double x;
+
+    @Override
+    protected Object clone() {
+        Object p = null;
+        try {
+            p = super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return p;
+    }
 }
