@@ -8,7 +8,7 @@ class PointTest {
 
     @Test
     public void testGetX() {
-        var point = new Point(2);
+        var point = new Point(2, "A");
         assertEquals(point.getX(), 2);
     }
 }

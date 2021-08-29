@@ -1,11 +1,6 @@
 package com.alex.andreiev.geometry;
 
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Min;
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 @Getter
 public class Rectangle {

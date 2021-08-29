@@ -8,7 +8,7 @@ class Point2DTest {
 
     @Test
     void getY() {
-        var point = new Point2D(2, 4);
+        var point = new Point2D(2, 4, "A");
         assertEquals(point.getY(), 4);
     }
 }

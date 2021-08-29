@@ -11,6 +11,10 @@ public class Line2D extends AbstractLine<Point2D, Line2D> {
             throw new IllegalArgumentException("start pont cannot be equal an end point");
     }
 
+    public Line2D(Line2D line) {
+        this(line.points.first(), line.points.last());
+    }
+
     @Override
     public void addPoint(Point2D point) {
 
